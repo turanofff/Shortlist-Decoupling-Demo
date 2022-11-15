@@ -5,9 +5,19 @@
   <strong>remove</strong> items to/from the shortlist. The changes are expected
   to be rendered immediately after the shortlist changes. Additionally, you
   should be able to push more mocked search results to the list while preserving
-  the state of the shortlisted items. Note some of the extra mocked results are
-  already shortlisted for demonstration purposes and should be rendered
+  the state of the shortlisted items. Note that some of the extra mocked results
+  are already shortlisted for demonstration purposes and should be rendered
   accordingly.
+</p>
+
+<p>
+  In summary, this demonstrates that the search results may be provided by
+  <strong>SearchService</strong> as an <strong>Observable</strong> and the
+  shortlist data provided by <strong>ShortlistService</strong> as an
+  <strong>Observable</strong>
+  too. The shortlist state is syncrhonised using
+  <strong>combineLatest</strong> operator from <strong>rxjs</strong> whenever
+  any of the observables emit new data.
 </p>
 
 <app-search-results></app-search-results>
