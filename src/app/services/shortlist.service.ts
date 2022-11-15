@@ -5,7 +5,9 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ShortlistService {
-  private shortlistedProfiles: Set<number> = new Set<number>([1, 5, 10]);
+  private shortlistedProfiles: Set<number> = new Set<number>([
+    1, 5, 10, 16, 20,
+  ]);
 
   private shortlistSubject: BehaviorSubject<Set<number>> = new BehaviorSubject(
     this.shortlistedProfiles
