@@ -1,12 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Inject,
-  Input,
-  Renderer2,
-} from '@angular/core';
+import { Directive, ElementRef, Inject, Input, Renderer2 } from '@angular/core';
 import { Profile } from '../models/profile.model';
 import { ShortlistService } from '../services/shortlist.service';
 

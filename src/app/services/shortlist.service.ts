@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,8 @@ export class ShortlistService {
   );
 
   get shortlist$(): Observable<Set<number>> {
+    // Uncomment this line if you want to see error handling in action
+    // return throwError(() => new Error('Unable to complete api call'));
     return this.shortlistSubject.asObservable();
   }
 
