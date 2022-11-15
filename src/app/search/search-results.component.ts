@@ -18,11 +18,11 @@ export class SearchResults {
     private searchService: SearchService,
     private shortlistService: ShortlistService
   ) {
-    // Here we have two obsrvables coming from the different services.
+    // Here we have two observables coming from the different services.
     this.searchResults$ = this.searchService.searchResults$;
     this.shortlist$ = this.shortlistService.shortlist$;
 
-    // This is how we combine latest emmitted values from observables and updating shortlist status.
+    // This is how we combine latest emitted values from observables and updating shortlist status.
     this.mergedResult$ = combineLatest(
       [this.searchResults$, this.shortlist$],
       (searchResults, shortlist) => {
