@@ -7,14 +7,14 @@ import {
   Input,
   Renderer2,
 } from '@angular/core';
+import { Profile } from '../models/profile.model';
 import { ShortlistService } from '../services/shortlist.service';
 
 @Directive({
   selector: '[appShortlist]',
 })
 export class ShortlistDirective {
-  @Input() profileId: number;
-  @Input() shortlisted: boolean;
+  @Input() profile: Profile;
 
   private shortlistButton = this.document.createElement('button');
 
@@ -44,17 +44,17 @@ export class ShortlistDirective {
   }
 
   private toggleShortlistedItem(): void {
-    if (this.shortlisted) {
+    if (this.profile?.shortlisted) {
       this.configureShortlistButton(false);
-      this.removeFromShortlist(this.profileId);
+      this.removeFromShortlist(this.profile?.profileId);
     } else {
       this.configureShortlistButton(true);
-      this.addToShortlist(this.profileId);
+      this.addToShortlist(this.profile?.profileId);
     }
   }
 
   ngAfterViewInit() {
-    this.configureShortlistButton(this.shortlisted);
+    this.configureShortlistButton(this.profile?.shortlisted);
     this.renderer.appendChild(
       this.elementRef.nativeElement,
       this.shortlistButton

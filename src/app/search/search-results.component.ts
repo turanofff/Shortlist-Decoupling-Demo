@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { combineLatest, map, Observable, switchMap, tap, zip } from 'rxjs';
-import { SearchResultsItem } from '../models/search-result.model';
+import { Profile } from '../models/profile.model';
 import { SearchService } from '../services/search.service';
 import { ShortlistService } from '../services/shortlist.service';
 
@@ -10,9 +10,9 @@ import { ShortlistService } from '../services/shortlist.service';
   styleUrls: ['./search-results.component.css'],
 })
 export class SearchResults {
-  private searchResults$: Observable<SearchResultsItem[]>;
+  private searchResults$: Observable<Profile[]>;
   private shortlist$: Observable<Set<number>>;
-  public mergedResult$: Observable<SearchResultsItem[]>;
+  public mergedResult$: Observable<Profile[]>;
 
   constructor(
     private searchService: SearchService,

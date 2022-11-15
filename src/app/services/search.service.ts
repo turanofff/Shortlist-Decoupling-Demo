@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { randFullName } from '@ngneat/falso';
-import { SearchResultsItem } from '../models/search-result.model';
+import { Profile } from '../models/profile.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  private searchResults: SearchResultsItem[] = [];
-  private searchResultsSubject: BehaviorSubject<SearchResultsItem[]> =
+  private searchResults: Profile[] = [];
+  private searchResultsSubject: BehaviorSubject<Profile[]> =
     new BehaviorSubject(this.searchResults);
 
   constructor() {
     this.mockResults(15);
   }
 
-  get searchResults$(): Observable<SearchResultsItem[]> {
+  get searchResults$(): Observable<Profile[]> {
     return this.searchResultsSubject.asObservable();
   }
 

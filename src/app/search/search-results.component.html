@@ -1,10 +1,5 @@
 <ul>
-  <li
-    *ngFor="let item of mergedResult$ | async"
-    [profileId]="item.profileId"
-    [shortlisted]="item.shortlisted"
-    appShortlist
-  >
+  <li *ngFor="let item of mergedResult$ | async" [profile]="item" appShortlist>
     {{ item.name }}
   </li>
 </ul>
