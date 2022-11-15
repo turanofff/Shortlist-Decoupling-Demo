@@ -10,8 +10,8 @@ import { ShortlistService } from '../services/shortlist.service';
   styleUrls: ['./search-results.component.css'],
 })
 export class SearchResults {
-  public searchResults$: Observable<SearchResultsItem[]>;
-  public shortlist$: Observable<Set<number>>;
+  private searchResults$: Observable<SearchResultsItem[]>;
+  private shortlist$: Observable<Set<number>>;
   public mergedResult$: Observable<SearchResultsItem[]>;
 
   constructor(
