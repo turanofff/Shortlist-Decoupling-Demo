@@ -33,21 +33,20 @@ export class ShortlistDirective {
     this.shortlistService.removeFromShortlist(profileId);
   }
 
-  @HostListener('click') onClick() {
-    if (this.shortlisted) {
-      this.shortlistButton.innerHTML = 'add';
-      this.removeFromShortlist(this.profileId);
-    } else {
-      this.shortlistButton.innerHTML = 'remove';
-      this.addToShortlist(this.profileId);
-    }
-  }
-
   ngAfterViewInit() {
     this.shortlistButton.innerHTML = this.shortlisted ? 'remove' : 'add';
     this.renderer.appendChild(
       this.elementRef.nativeElement,
       this.shortlistButton
     );
+    this.renderer.listen(this.shortlistButton, 'click', () => {
+      if (this.shortlisted) {
+        this.shortlistButton.innerHTML = 'add';
+        this.removeFromShortlist(this.profileId);
+      } else {
+        this.shortlistButton.innerHTML = 'remove';
+        this.addToShortlist(this.profileId);
+      }
+    });
   }
 }
