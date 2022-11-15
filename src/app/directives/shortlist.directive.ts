@@ -33,20 +33,34 @@ export class ShortlistDirective {
     this.shortlistService.removeFromShortlist(profileId);
   }
 
+  private configureShortlistButton(isShortlisted: boolean): void {
+    if (isShortlisted) {
+      this.shortlistButton.innerHTML = 'remove';
+      this.shortlistButton.classList.add('button-shortlisted');
+    } else {
+      this.shortlistButton.innerHTML = 'add';
+      this.shortlistButton.classList.remove('button-shortlisted');
+    }
+  }
+
+  private toggleShortlistedItem(): void {
+    if (this.shortlisted) {
+      this.configureShortlistButton(false);
+      this.removeFromShortlist(this.profileId);
+    } else {
+      this.configureShortlistButton(true);
+      this.addToShortlist(this.profileId);
+    }
+  }
+
   ngAfterViewInit() {
-    this.shortlistButton.innerHTML = this.shortlisted ? 'remove' : 'add';
+    this.configureShortlistButton(this.shortlisted);
     this.renderer.appendChild(
       this.elementRef.nativeElement,
       this.shortlistButton
     );
-    this.renderer.listen(this.shortlistButton, 'click', () => {
-      if (this.shortlisted) {
-        this.shortlistButton.innerHTML = 'add';
-        this.removeFromShortlist(this.profileId);
-      } else {
-        this.shortlistButton.innerHTML = 'remove';
-        this.addToShortlist(this.profileId);
-      }
-    });
+    this.renderer.listen(this.shortlistButton, 'click', () =>
+      this.toggleShortlistedItem()
+    );
   }
 }

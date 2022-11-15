@@ -5,4 +5,12 @@ li {
 button {
   position: absolute;
   left: 15rem;
+  min-width: 4rem;
+  border: 1px solid grey;
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+}
+.button-shortlisted {
+  background-color: #ff9ee2;
+  border: 1px solid #963679;
 }
