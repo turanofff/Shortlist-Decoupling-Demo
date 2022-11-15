@@ -27,7 +27,9 @@ export class SearchResults {
       [this.searchResults$, this.shortlist$],
       (searchResults, shortlist) => {
         return searchResults.map((searchResultsItem) => {
-          searchResultsItem.shortlisted = shortlist.has(searchResultsItem.id);
+          searchResultsItem.shortlisted = shortlist.has(
+            searchResultsItem.profileId
+          );
           return searchResultsItem;
         });
       }

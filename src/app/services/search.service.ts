@@ -11,7 +11,7 @@ export class SearchService {
     const mockedResults = [];
     for (let i = 1; i <= 25; i++) {
       mockedResults.push({
-        id: i,
+        profileId: i,
         name: randFullName(),
         shortlisted: false,
       });

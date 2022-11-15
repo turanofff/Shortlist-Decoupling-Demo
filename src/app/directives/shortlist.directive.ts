@@ -25,12 +25,12 @@ export class ShortlistDirective {
     private shortlistService: ShortlistService
   ) {}
 
-  private addToShortlist(id: number): void {
-    this.shortlistService.addToShortlist(id);
+  private addToShortlist(profileId: number): void {
+    this.shortlistService.addToShortlist(profileId);
   }
 
-  private removeFromShortlist(id: number): void {
-    this.shortlistService.removeFromShortlist(id);
+  private removeFromShortlist(profileId: number): void {
+    this.shortlistService.removeFromShortlist(profileId);
   }
 
   @HostListener('click') onClick() {

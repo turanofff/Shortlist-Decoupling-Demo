@@ -15,17 +15,13 @@ export class ShortlistService {
     return this.shortlistSubject.asObservable();
   }
 
-  public addToShortlist(id: number): void {
-    this.shortlistedProfiles.add(id);
+  public addToShortlist(profileId: number): void {
+    this.shortlistedProfiles.add(profileId);
     this.shortlistSubject.next(this.shortlistedProfiles);
   }
 
-  public removeFromShortlist(id: number): void {
-    this.shortlistedProfiles.delete(id);
+  public removeFromShortlist(profileId: number): void {
+    this.shortlistedProfiles.delete(profileId);
     this.shortlistSubject.next(this.shortlistedProfiles);
-  }
-
-  public isShortlisted(id: number): boolean {
-    return this.shortlistedProfiles.has(id);
   }
 }

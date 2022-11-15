@@ -1,5 +1,5 @@
 export interface SearchResultsItem {
-  id: number;
+  profileId: number;
   name: string;
   shortlisted: boolean;
 }
