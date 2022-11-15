@@ -1,4 +1,8 @@
 /* Add application styles & imports to this file! */
+:root {
+  font-family: Tahoma, sans-serif;
+}
+
 li {
   line-height: 1.5;
 }
