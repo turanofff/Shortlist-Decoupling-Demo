@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  combineLatest,
-  Observable,
-  timeout,
-  catchError,
-  of,
-  throwError,
-  pipe,
-} from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { Profile } from '../models/profile.model';
 import { SearchService } from '../services/search.service';
 import { ShortlistService } from '../services/shortlist.service';
+import { ErrorAndTimeoutPipe } from '../utlility/error-and-timeout.pipe';
 
 @Component({
   selector: 'app-search-results',
@@ -19,21 +12,6 @@ import { ShortlistService } from '../services/shortlist.service';
 })
 export class SearchResults {
   private apiTimeout = 20 * 1000; // Setting timeout to 20s as an example.
-  private timeoutAndErrorHandlingPipe = (
-    apiCallName: string,
-    defaultReturnValue: any
-  ) =>
-    pipe(
-      timeout({
-        first: this.apiTimeout, // Times out only first value emitted from observable.
-        with: () => throwError(() => new Error('API has timed out')), // Throws timeout error.
-      }),
-      catchError((error) => {
-        // Handles all erros including timeout.
-        console.error(`${apiCallName} call returned error`, error);
-        return of(defaultReturnValue);
-      })
-    );
   private searchResults$: Observable<Profile[]>;
   private shortlist$: Observable<Set<number>>;
   public mergedResults$: Observable<Profile[]>;
@@ -45,10 +23,10 @@ export class SearchResults {
     // Here we have two observables coming from the different services.
     // We also do have timeout and error handling should real api call fail.
     this.searchResults$ = this.searchService.searchResults$.pipe(
-      this.timeoutAndErrorHandlingPipe('Search', [])
+      ErrorAndTimeoutPipe(this.apiTimeout, 'Search', [])
     ) as Observable<Profile[]>;
     this.shortlist$ = this.shortlistService.shortlist$.pipe(
-      this.timeoutAndErrorHandlingPipe('Shortlist', new Set())
+      ErrorAndTimeoutPipe(this.apiTimeout, 'Shortlist', new Set())
     ) as Observable<Set<number>>;
 
     // This is how we combine latest emitted values from observables and updating shortlist status.
