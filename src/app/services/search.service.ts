@@ -12,7 +12,7 @@ export class SearchService {
     new BehaviorSubject(this.searchResults);
 
   constructor() {
-    this.mockResults(25);
+    this.mockResults(15);
   }
 
   get searchResults$(): Observable<SearchResultsItem[]> {
