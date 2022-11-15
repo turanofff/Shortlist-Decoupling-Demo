@@ -11,7 +11,6 @@ import { ErrorAndTimeoutPipe } from '../../shared/utlility/error-and-timeout.pip
   styleUrls: ['./search-results.component.css'],
 })
 export class SearchResults {
-  private apiTimeout = 20 * 1000; // Setting timeout to 20s as an example.
   private searchResults$: Observable<Profile[]>;
   private shortlist$: Observable<Set<number>>;
   public mergedResults$: Observable<Profile[]>;
@@ -23,10 +22,10 @@ export class SearchResults {
     // Here we have two observables coming from the different services.
     // We also do have timeout and error handling should real api call fail.
     this.searchResults$ = this.searchService.searchResults$.pipe(
-      ErrorAndTimeoutPipe(this.apiTimeout, 'Search', [])
+      ErrorAndTimeoutPipe('Search', [])
     ) as Observable<Profile[]>;
     this.shortlist$ = this.shortlistService.shortlist$.pipe(
-      ErrorAndTimeoutPipe(this.apiTimeout, 'Shortlist', new Set())
+      ErrorAndTimeoutPipe('Shortlist', new Set())
     ) as Observable<Set<number>>;
 
     // This is how we combine latest emitted values from observables and updating shortlist status.

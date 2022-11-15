@@ -1,13 +1,13 @@
 import { catchError, of, pipe, throwError, timeout } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export function ErrorAndTimeoutPipe(
-  apiTimeout: number,
   apiCallName: string,
   defaultReturnValue: any
 ) {
   return pipe(
     timeout({
-      first: apiTimeout, // Times out only first value emitted from observable.
+      first: environment.apiTimeout, // Times out only first value emitted from observable.
       with: () => throwError(() => new Error('API has timed out')), // Throws timeout error.
     }),
     catchError((error) => {
