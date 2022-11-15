@@ -12,7 +12,7 @@ import { ShortlistService } from '../services/shortlist.service';
 export class SearchResults {
   private searchResults$: Observable<Profile[]>;
   private shortlist$: Observable<Set<number>>;
-  public mergedResult$: Observable<Profile[]>;
+  public mergedResults$: Observable<Profile[]>;
 
   constructor(
     private searchService: SearchService,
@@ -23,7 +23,7 @@ export class SearchResults {
     this.shortlist$ = this.shortlistService.shortlist$;
 
     // This is how we combine latest emitted values from observables and updating shortlist status.
-    this.mergedResult$ = combineLatest(
+    this.mergedResults$ = combineLatest(
       [this.searchResults$, this.shortlist$],
       (searchResults, shortlist) => {
         return searchResults.map((searchResultsItem) => {
