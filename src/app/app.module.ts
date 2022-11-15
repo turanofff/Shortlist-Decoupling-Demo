@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SearchResults } from './pages/search/search-results.component';
-import { ShortlistDirective } from './directives/shortlist.directive';
+import { ShortlistDirective } from './shared/directives/shortlist.directive';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
