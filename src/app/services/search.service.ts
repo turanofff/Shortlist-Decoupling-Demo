@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { randFullName } from '@ngneat/falso';
 import { SearchResultsItem } from '../models/search-result.model';
 
@@ -7,15 +7,31 @@ import { SearchResultsItem } from '../models/search-result.model';
   providedIn: 'root',
 })
 export class SearchService {
+  private searchResults: SearchResultsItem[] = [];
+  private searchResultsSubject: BehaviorSubject<SearchResultsItem[]> =
+    new BehaviorSubject(this.searchResults);
+
+  constructor() {
+    this.mockResults(25);
+  }
+
   get searchResults$(): Observable<SearchResultsItem[]> {
-    const mockedResults = [];
-    for (let i = 1; i <= 25; i++) {
-      mockedResults.push({
+    return this.searchResultsSubject.asObservable();
+  }
+
+  private mockResults(count: number): void {
+    const searchResultsCount = this.searchResults.length;
+    for (let i = searchResultsCount + 1; i <= searchResultsCount + count; i++) {
+      this.searchResults.push({
         profileId: i,
         name: randFullName(),
         shortlisted: false,
       });
     }
-    return of(mockedResults);
+  }
+
+  public pushMoreResults(): void {
+    this.mockResults(5);
+    this.searchResultsSubject.next(this.searchResults);
   }
 }

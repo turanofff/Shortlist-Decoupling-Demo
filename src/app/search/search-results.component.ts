@@ -35,4 +35,8 @@ export class SearchResults {
       }
     );
   }
+
+  public pushMore(): void {
+    this.searchService.pushMoreResults();
+  }
 }
