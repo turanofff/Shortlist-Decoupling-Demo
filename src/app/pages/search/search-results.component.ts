@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
-import { Profile } from 'src/app/shared/models/profile.model';
-import { SearchService } from 'src/app/shared/services/search.service';
-import { ShortlistService } from 'src/app/shared/services/shortlist.service';
-import { ErrorAndTimeoutPipe } from 'src/app/shared/utlility/error-and-timeout.pipe';
+import { Profile } from '../../shared/models/profile.model';
+import { SearchService } from '../../shared/services/search.service';
+import { ShortlistService } from '../../shared/services/shortlist.service';
+import { ErrorAndTimeoutPipe } from '../../shared/utlility/error-and-timeout.pipe';
 
 @Component({
   selector: 'app-search-results',
